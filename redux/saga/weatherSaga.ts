@@ -1,3 +1,4 @@
+import { ParamsOf } from './../../.next/types/routes.d';
 import { getDailyError, getDailySuccess } from '@/redux/slices/weatherSlice';
 import { getDailyStart } from '@/redux/slices/weatherSlice';
 import axios from "axios";
@@ -75,7 +76,14 @@ function* workGetGeoLok(e:GetActionType){
      toast.error("Shahar nomi topilmadi")
      return
     }
-    yield put(getgeolocation({lat:data[0].lat,lon:data[0].lon}))
+    const lat=data[0].lat
+    const lon=data[0].lon
+    yield put(getgeolocation({lat,lon}))
+
+    yield put({
+      type: "GETWEATHERDAYHOURLY",
+      payload:{lat,lon}
+    });
   } catch (error) {
     console.log(error)
   }
@@ -103,3 +111,7 @@ function * mySaga(){
 
 
 export default mySaga;
+
+
+
+// https://api.open-meteo.com/v1/forecast?latitude=41.3123363&longitude=69.2787079&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weathercode&hourly=temperature_2m,precipitation,weathercode,wind_speed_10m&timezone=Asia/Tashkent

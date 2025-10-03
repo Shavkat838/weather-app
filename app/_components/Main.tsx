@@ -92,8 +92,6 @@ useEffect(()=>{
   function handleSearch() {
     dispatch({type:"GETWEATHER",payload:value})
     dispatch({type:"GETWEATHERGEOLOK",payload:value})
-    dispatch({ type: "GETWEATHERDAYHOURLY",payload:{lon:geoinfo.lon,lat:geoinfo.lat} });
-    
   }
 
 

@@ -109,6 +109,7 @@ export const weatherSlice=createSlice({
        state.value=""
       },
       getgeolocation:(state,action)=>{
+        console.log(action.payload)
         state.geoinfo.lat=action.payload.lat
         state.geoinfo.lon=action.payload.lon
       },
@@ -121,6 +122,7 @@ export const weatherSlice=createSlice({
       },
       getDailySuccess:(state,action)=>{
         state.dailyLoading=false;
+        console.log(action.payload)
 
 
 //  kunlik uchun har bir kunni hafta kunlariga ozgartirish 
