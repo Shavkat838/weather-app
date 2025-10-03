@@ -7,7 +7,7 @@ import { RootState } from '@/redux/store';
 
 
 export default function Child() {
- const {weathers,dailyLoading,dailyWeathers,selectedIndexmax,selectedIndexmin}=useSelector((state:RootState)=>state.weather)
+ const {weathers,dailyWeathers,selectedIndexmax,selectedIndexmin}=useSelector((state:RootState)=>state.weather)
  const [mounted,setMounted]=useState(false)
 
 useEffect(()=>{

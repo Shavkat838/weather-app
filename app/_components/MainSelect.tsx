@@ -1,7 +1,6 @@
 "use client"
 import { filteredIndex } from "@/redux/slices/weatherSlice";
 import { AppDispatch, RootState } from "@/redux/store";
-import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
