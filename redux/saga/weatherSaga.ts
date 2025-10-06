@@ -1,25 +1,16 @@
-import { ParamsOf } from './../../.next/types/routes.d';
 import { getDailyError, getDailySuccess } from '@/redux/slices/weatherSlice';
 import { getDailyStart } from '@/redux/slices/weatherSlice';
 import axios from "axios";
 import { put, takeEvery } from "redux-saga/effects";
 import { getgeolocation, getInformartionStart, getInformationError, getInformationSuccess, resetInput } from "../slices/weatherSlice";
-import { toast, Toaster } from "sonner";
-
-
-type WeatherTypte = {
-  id: number;
-  main: string;
-  description: string;
-  icon: string;
-};
-
+import { toast } from "sonner";
 
 
 type GetActionType={
   type:string;
   payload:string;
 }
+
 
 
 type GetDailyType={
@@ -30,7 +21,7 @@ type GetDailyType={
   }
 }
 
-
+const apikey = process.env.NEXT_PUBLIC_BASE_URL;
 
 
 
@@ -42,7 +33,7 @@ function * workGetWeather(e:GetActionType){
     try {  
        yield  put(getInformartionStart())  
        const {data}= yield axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${e.payload}&appid=71dc1dae0428277b3380b51732e70795&units=metric`
+          `https://api.openweathermap.org/data/2.5/weather?q=${e.payload}&appid=${apikey}&units=metric`
         );
        if (data === undefined) {
         toast.error("Malumot topilmadi!");
@@ -70,7 +61,7 @@ function * workGetWeather(e:GetActionType){
 function* workGetGeoLok(e:GetActionType){
   try {
   const {data}= yield axios.get(
-      `https://api.openweathermap.org/geo/1.0/direct?q=${e.payload}&limit=1&appid=71dc1dae0428277b3380b51732e70795`
+      `https://api.openweathermap.org/geo/1.0/direct?q=${e.payload}&limit=1&appid=${apikey}`
     );
     if(data.length===0){
      toast.error("Shahar nomi topilmadi")

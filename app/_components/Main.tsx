@@ -13,38 +13,7 @@ import { ImSpinner3 } from "react-icons/im";
 
 export default function Main() {
 
-
-  //  async function handleSearch(){
-  //   if(value===""){
-  //     toast.info(" Shahar nomini qidiring!")
-  //     return
-  //   }
-  //  try {
-  //  setLoading(true)
-  //  const res= await  axios.get(
-  //    `https://api.openweathermap.org/data/2.5/weather?q=${value}&appid=71dc1dae0428277b3380b51732e70795&units=metric`
-  //  );
-  //   setLoading(false);
-  //   console.log(res)
-  //  if (res.status!==200&&(res.status as number)!==304){
-  //   toast.error(res.statusText)
-  //   return
-  //  }
-  //  setarrays(res.data)
-  //  setValue("")
-  //  } catch (error:any) {
-  //   setLoading(false);
-  //   if(error.status=404){
-  //         toast.error("Ma'lumot topilmadi");
-  //   }
-  //   if(error.status===429){
-  //     toast.error('Juda kop sorov yuborildi')
-  //   }
-  //   if(error.status===500||error.status===502||error.status===503||error.status===504){
-  //     toast.error("Server bilan bog`liq muammo")
-  //   }
-  //  }
-  // }
+  const apikey=process.env.NEXT_PUBLIC_BASE_URL
 
 const {value,loading,weathers,dailyWeathers,dailyLoading,geoinfo}=useSelector((state:RootState)=>state.weather)
 const dispatch=useDispatch<AppDispatch>()
@@ -58,7 +27,7 @@ const dispatch=useDispatch<AppDispatch>()
       try {
              dispatch(getInformartionStart());
              const { data } = await axios.get(
-               "https://api.openweathermap.org/data/2.5/weather?q=Bukhara&appid=71dc1dae0428277b3380b51732e70795&units=metric"
+               `https://api.openweathermap.org/data/2.5/weather?q=Bukhara&appid=${apikey}&units=metric`
              );
              dispatch(getInformationSuccess(data)) 
       } catch (error) {
